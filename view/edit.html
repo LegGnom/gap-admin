@@ -2,23 +2,49 @@
 
 
 {% block body %}
-    <form class="form-horizontal">
+    <ul class="nav nav-tabs nav-margin">
+        <li role="presentation"><a href="{{ page.list }}">Список {{ count }}</a></li>
+        <li role="presentation" class="active"><a href="{{ page.edit }}">Добавить</a></li>
+    </ul>
+
+    <form class="form-horizontal" method="{{ 'POST' if values.id else 'PUT'}}">
+        {% if values.id %}
+            <input type="hidden" name="id" value="{{ values.id }}"/>
+        {% endif %}
+
+
         {% for item in fields %}
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">{{ item.name }}</label>
                 <div class="col-sm-10">
-
-                    {% if item.type in ['String', 'Number'] %}
-                        <input type="text" class="form-control" placeholder="{{ item.name }}" value="{{ item.default }}">
+                    {% if item.type in ['String'] %}
+                        {% set type = "text" %}
+                    {% elif item.type == 'Number' %}
+                        {% set type = 'number' %}
                     {% elif item.type == 'Boolean' %}
-                        <input type="checkbox" class="form-control" placeholder="{{ item.name }}" value="{{ item.default }}">
+                        {% set type = "checkbox" %}
+                    {% elif item.type == 'Date' %}
+                        {% set type = "date" %}
                     {% endif %}
+
+                    <input type="{{ type }}"
+                           class="form-control"
+                           name="{{ item.name }}"
+                           placeholder="{{ item.name }}"
+                           value="{{ values[item.name] or item.default }}"
+                    />
 
                 </div>
             </div>
         {% endfor %}
-    </form>
 
-    <a href="{{ page.edit }}" type="button" class="btn btn-primary">Добавить</a>
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a href="{{ page.list }}" class="btn">Отмена</a>
+            </div>
+        </div>
+    </form>
 
 {% endblock %}

@@ -14,5 +14,26 @@
         </div>
         <script src="/admin/static/jquery.js"></script>
         <script src="/admin/static/bootstrap/js/bootstrap.js"></script>
+        <script>
+            $('form').on('submit', function(event) {
+                var $form = $(event.target);
+                var method = $form.attr('method') || 'POST';
+
+                event.preventDefault();
+
+                $.ajax({
+                    url: $form.attr('action') || window.location.pathname,
+                    method: method,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(event.target),
+                    success: function(data){
+                        window.location = '{{ page.list }}';
+                    }
+                });
+
+            });
+        </script>
     </body>
 </html>

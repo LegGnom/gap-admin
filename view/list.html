@@ -2,9 +2,37 @@
 
 
 {% block body %}
-    {% for item in list_data %}
+    <ul class="nav nav-tabs nav-margin">
+        <li role="presentation" class="active"><a href="{{ page.list }}">Список {{ count }}</a></li>
+        <li role="presentation"><a href="{{ page.edit }}">Добавить</a></li>
+    </ul>
 
-    {% endfor %}
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>#</th>
+            {% for field in fields %}
+                <th>{{ field.name }}</th>
+            {% endfor %}
+            <th></th>
+            <th></th>
+        </tr>
+
+        {% for item in list_data %}
+            <tr>
+                <td>{{ item.id }}</td>
+                {% for field in fields %}
+                    <td>{{ item[field.name] }}</td>
+                {% endfor %}
+                <td>
+                    <a class="glyphicon glyphicon-pencil" href="{{ page.edit }}?uid={{ item.id }}"></a>
+                </td>
+                <td>
+                    <a class="glyphicon glyphicon-remove" href="{{ page.remove }}?uid={{ item.id }}"></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 
 
     <a href="{{ page.edit }}" type="button" class="btn btn-primary">Добавить</a>
