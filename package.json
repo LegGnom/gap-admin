@@ -1,0 +1,32 @@
+{
+  "name": "gap-admin",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "author": "Dmitriy Tsirulnikov <leggnom@gmail.com>",
+  "license": "MIT"
+  "engines": {
+    "node": "^6.10.0"
+  },
+
+  "keywords": [
+    "gap",
+    "gap-admin",
+    "admin",
+    "db"
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LegGnom/gap.js.git"
+  },
+  "dependencies": {
+    "gap.js": "^0.3.3",
+    "nodemon": "^1.11.0"
+  }
+}

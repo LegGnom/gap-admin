@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="/admin/static/bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" href="/admin/static/bootstrap/css/bootstrap-theme.css"/>
+        <link rel="stylesheet" href="/admin/static/main.css"/>
+    </head>
+    <body>
+        <div class="wrap">
+            {% include '../nav/nav.html' %}
+
+            {% block body %}{% endblock %}
+        </div>
+        <script src="/admin/static/jquery.js"></script>
+        <script src="/admin/static/bootstrap/js/bootstrap.js"></script>
+    </body>
+</html>
